@@ -1,32 +1,13 @@
-import Image from "next/image";
-import { Globe2, UserRound } from "lucide-react";
+import { Globe2 } from "lucide-react";
 import type { ProfileConfig } from "@/types/profile";
+import { ProfileAvatar } from "@/components/profile/profile-avatar";
 
 export function ProfileHero({ config }: { config: ProfileConfig }) {
   const { identity } = config;
-  const avatar = identity.avatar?.trim();
   return (
     <section className="hero" id="home" aria-labelledby="profile-name">
       <div className="portrait-wrap">
-        {avatar ? (
-          <div className="portrait-image-area">
-            <Image
-              className="portrait"
-              src={avatar}
-              alt={`${identity.name} profile portrait`}
-              fill
-              sizes="(max-width: 600px) 112px, 136px"
-              priority
-            />
-          </div>
-        ) : (
-          <div
-            className="portrait-fallback"
-            role="img"
-            aria-label={`${identity.name} profile image placeholder`}>
-            <UserRound size={38} strokeWidth={1.25} />
-          </div>
-        )}
+        <ProfileAvatar src={identity.avatar} name={identity.name} />
       </div>
       <p className="eyebrow">A LITTLE INTRODUCTION</p>
       <h1 id="profile-name">{identity.name}</h1>

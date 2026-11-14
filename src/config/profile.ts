@@ -1,6 +1,12 @@
 import type { ProfileConfig } from "@/types/profile";
 
 export const profile: ProfileConfig = {
+  seo: {
+    title: "Renaldi Mohamad — Software Developer & Digital Creator",
+    description:
+      "Explore Renaldi Mohamad's digital presence. A software developer and digital creator building digital experiences and sharing what he creates.",
+    ogImage: "/images/og-image.png",
+  },
   identity: {
     avatar: "/images/profile.jpeg",
     name: "Renaldi Mohamad",
@@ -25,6 +31,7 @@ export const profile: ProfileConfig = {
   },
   contact: { website: "https://links.renaldi.fun" },
   footer: { copyrightName: "Renaldi Mohamad", copyrightYear: 2026 },
+
   links: [
     {
       id: "instagram",
@@ -72,13 +79,40 @@ export const profile: ProfileConfig = {
       order: 5,
     },
     {
+      id: "portfolio",
+      platform: "portfolio",
+      label: "Portfolio",
+      username: "me.renaldi.fun",
+      url: "https://me.renaldi.fun",
+      enabled: true,
+      order: 6,
+    },
+    {
+      id: "blog",
+      platform: "blog",
+      label: "Personal Blog",
+      username: "renaldi.fun",
+      url: "https://renaldi.fun",
+      enabled: true,
+      order: 7,
+    },
+    {
+      id: "website",
+      platform: "website",
+      label: "Website",
+      username: "links.renaldi.fun",
+      url: "https://links.renaldi.fun",
+      enabled: false,
+      order: 8,
+    },
+    {
       id: "whatsapp",
       platform: "whatsapp",
       label: "WhatsApp",
       description: "Direct chat",
       url: "",
       enabled: false,
-      order: 6,
+      order: 9,
     },
   ],
 };

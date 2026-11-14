@@ -10,9 +10,16 @@ export type SocialPlatform =
   | "telegram"
   | "youtube"
   | "facebook"
+  | "portfolio"
+  | "blog"
   | "x";
 
 export interface ProfileConfig {
+  seo: {
+    title: string;
+    description: string;
+    ogImage: string;
+  };
   identity: {
     name: string;
     username: string;
