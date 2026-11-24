@@ -10,8 +10,16 @@ export default function HomePage() {
       className="page-shell"
       style={
         {
-          "--accent": profile.appearance.accentColor,
-          "--page-background": profile.appearance.backgroundColor,
+          "--background": profile.appearance.colors.background,
+          "--surface": profile.appearance.colors.surface,
+          "--foreground": profile.appearance.colors.foreground,
+          "--secondary-text": profile.appearance.colors.secondaryText,
+          "--tertiary-text": profile.appearance.colors.tertiaryText,
+          "--border": profile.appearance.colors.border,
+          "--accent": profile.appearance.colors.accent,
+          "--accent-hover": profile.appearance.colors.accentHover,
+          "--icon-surface": profile.appearance.colors.iconSurface,
+          "--focus": profile.appearance.colors.focus,
         } as React.CSSProperties
       }>
       <div className="page-frame">

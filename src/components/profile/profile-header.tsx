@@ -40,16 +40,30 @@ export function ProfileHeader({ config }: { config: ProfileConfig }) {
     <header className="topbar">
       <div className="topbar-left">
         {availability?.enabled && (
-          <span className="availability"><i aria-hidden="true" />{availability.label}</span>
+          <span className="availability">
+            <i aria-hidden="true" />
+            {availability.label}
+          </span>
         )}
       </div>
       <div className="topbar-right">
         {config.actions.shareProfile?.enabled && (
-          <button className="top-cta" type="button" onClick={shareProfile} aria-label="Share profile" title="Share profile">
-            {feedback === "Profile link copied" ? <Check size={17} strokeWidth={1.8} /> : <Share2 size={17} strokeWidth={1.8} />}
+          <button
+            className="top-cta"
+            type="button"
+            onClick={shareProfile}
+            aria-label="Share profile"
+            title="Share profile">
+            {feedback === "Profile link copied" ? (
+              <Check size={17} strokeWidth={1.8} />
+            ) : (
+              <Share2 size={17} strokeWidth={1.8} />
+            )}
           </button>
         )}
-        <span className="share-feedback" aria-live="polite" role="status">{feedback}</span>
+        <span className="share-feedback" aria-live="polite" role="status">
+          {feedback}
+        </span>
       </div>
     </header>
   );

@@ -15,7 +15,12 @@ export function ProfileActions({ config }: { config: ProfileConfig }) {
     const objectUrl = URL.createObjectURL(blob);
     const anchor = document.createElement("a");
     anchor.href = objectUrl;
-    anchor.download = `${config.identity.name.normalize("NFKD").replace(/[^a-zA-Z0-9]+/g, "-").replace(/^-|-$/g, "").toLowerCase() || "contact"}.vcf`;
+    const filename = config.identity.name
+      .normalize("NFKD")
+      .replace(/[^a-zA-Z0-9]+/g, "-")
+      .replace(/^-|-$/g, "")
+      .toLowerCase() || "contact";
+    anchor.download = `${filename}.vcf`;
     document.body.appendChild(anchor);
     anchor.click();
     anchor.remove();

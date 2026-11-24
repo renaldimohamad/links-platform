@@ -1,10 +1,13 @@
 import type { Metadata, Viewport } from "next";
-import { DM_Sans, Plus_Jakarta_Sans } from "next/font/google";
+import { Instrument_Sans } from "next/font/google";
 import { profile } from "@/config/profile";
 import "./globals.css";
 
-const headingFont = Plus_Jakarta_Sans({ subsets: ["latin"], variable: "--font-heading", display: "swap" });
-const bodyFont = DM_Sans({ subsets: ["latin"], variable: "--font-body", display: "swap" });
+const instrumentSans = Instrument_Sans({
+  subsets: ["latin"],
+  variable: "--font-instrument-sans",
+  display: "swap",
+});
 const ogImageUrl = new URL(profile.seo.ogImage, profile.identity.canonicalUrl).toString();
 export const metadata: Metadata = {
   title: profile.seo.title,
@@ -28,11 +31,21 @@ export const metadata: Metadata = {
     images: [ogImageUrl],
   },
   robots: { index: true, follow: true },
-  icons: profile.identity.avatar ? { icon: profile.identity.avatar, apple: profile.identity.avatar } : undefined,
+  icons: profile.identity.avatar
+    ? { icon: profile.identity.avatar, apple: profile.identity.avatar }
+    : undefined,
 };
 
-export const viewport: Viewport = { themeColor: profile.appearance.backgroundColor, width: "device-width", initialScale: 1 };
+export const viewport: Viewport = {
+  themeColor: profile.appearance.colors.background,
+  width: "device-width",
+  initialScale: 1,
+};
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="id" className={`${headingFont.variable} ${bodyFont.variable}`}><body>{children}</body></html>;
+  return (
+    <html lang="id" className={instrumentSans.variable}>
+      <body>{children}</body>
+    </html>
+  );
 }

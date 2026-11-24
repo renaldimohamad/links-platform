@@ -33,9 +33,18 @@ export interface ProfileConfig {
   appearance: {
     theme: "default";
     mode: "light";
-    accentColor: string;
-    backgroundColor: string;
-    typography: { heading: string; body: string };
+    colors: {
+      background: string;
+      surface: string;
+      foreground: string;
+      secondaryText: string;
+      tertiaryText: string;
+      border: string;
+      accent: string;
+      accentHover: string;
+      iconSurface: string;
+      focus: string;
+    };
   };
   actions: {
     primary?: { label: string; href?: string; enabled: boolean };

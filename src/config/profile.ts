@@ -20,9 +20,18 @@ export const profile: ProfileConfig = {
   appearance: {
     theme: "default",
     mode: "light",
-    accentColor: "#51358f",
-    backgroundColor: "#fcf7ff",
-    typography: { heading: "Plus Jakarta Sans", body: "DM Sans" },
+    colors: {
+      background: "#ffffff",
+      surface: "#FFFFFF",
+      foreground: "#262722",
+      secondaryText: "#62645D",
+      tertiaryText: "#777970",
+      border: "#E3E2DA",
+      accent: "#66745F",
+      accentHover: "#56634F",
+      iconSurface: "#F0F0EA",
+      focus: "#53684D",
+    },
   },
   actions: {
     primary: { label: "Get in touch", enabled: true },
