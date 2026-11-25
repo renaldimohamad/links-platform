@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Check, Share2 } from "lucide-react";
 import type { ProfileConfig } from "@/types/profile";
+import { getActionAppearanceStyle } from "@/lib/appearance";
 
 export function ProfileHeader({ config }: { config: ProfileConfig }) {
   const [feedback, setFeedback] = useState("");
@@ -50,6 +51,7 @@ export function ProfileHeader({ config }: { config: ProfileConfig }) {
         {config.actions.shareProfile?.enabled && (
           <button
             className="top-cta"
+            style={getActionAppearanceStyle(config, "shareButton", config.actions.shareProfile.appearance)}
             type="button"
             onClick={shareProfile}
             aria-label="Share profile"

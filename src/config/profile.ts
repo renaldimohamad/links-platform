@@ -1,4 +1,5 @@
 import type { ProfileConfig } from "@/types/profile";
+import { defaultAppearance } from "@/config/appearance";
 
 export const profile: ProfileConfig = {
   seo: {
@@ -17,30 +18,14 @@ export const profile: ProfileConfig = {
     bio: "Building digital experiences and sharing what I create.",
     availability: { enabled: true, label: "Available for projects" },
   },
-  appearance: {
-    theme: "default",
-    mode: "light",
-    colors: {
-      background: "#ffffff",
-      surface: "#FFFFFF",
-      foreground: "#262722",
-      secondaryText: "#62645D",
-      tertiaryText: "#777970",
-      border: "#E3E2DA",
-      accent: "#66745F",
-      accentHover: "#56634F",
-      iconSurface: "#F0F0EA",
-      focus: "#53684D",
-    },
-  },
+  appearance: defaultAppearance,
   actions: {
     primary: { label: "Get in touch", enabled: true },
     shareProfile: { enabled: true },
     saveContact: { label: "Save Contact", enabled: true },
   },
   contact: { website: "https://links.renaldi.fun" },
-  footer: { copyrightName: "Renaldi Mohamad", copyrightYear: 2026 },
-
+  footer: { copyrightName: "", copyrightYear: 2026 },
   links: [
     {
       id: "instagram",
@@ -50,6 +35,10 @@ export const profile: ProfileConfig = {
       url: "https://instagram.com/aldybalagtown",
       enabled: true,
       order: 1,
+      appearance: {
+        iconBackground: "#F8EEF2",
+        iconColor: "#B45F83",
+      },
     },
     {
       id: "tiktok",
@@ -59,6 +48,10 @@ export const profile: ProfileConfig = {
       url: "https://www.tiktok.com/@heidndkw",
       enabled: true,
       order: 2,
+      appearance: {
+        iconBackground: "#EEF1F1",
+        iconColor: "#252D30",
+      },
     },
     {
       id: "threads",
@@ -68,6 +61,10 @@ export const profile: ProfileConfig = {
       url: "https://threads.net/@aldybalagtown",
       enabled: true,
       order: 3,
+      appearance: {
+        iconBackground: "#F2F2F2",
+        iconColor: "#171717",
+      },
     },
     {
       id: "github",
@@ -77,6 +74,10 @@ export const profile: ProfileConfig = {
       url: "https://github.com/renaldimohamad",
       enabled: true,
       order: 4,
+      appearance: {
+        iconBackground: "#F0F0EF",
+        iconColor: "#24292F",
+      },
     },
     {
       id: "linkedin",
@@ -86,6 +87,10 @@ export const profile: ProfileConfig = {
       url: "https://linkedin.com/in/renaldimohamad",
       enabled: true,
       order: 5,
+      appearance: {
+        iconBackground: "#EDF3F8",
+        iconColor: "#2867A5",
+      },
     },
     {
       id: "portfolio",
@@ -95,6 +100,10 @@ export const profile: ProfileConfig = {
       url: "https://me.renaldi.fun",
       enabled: true,
       order: 6,
+      appearance: {
+        iconBackground: "#EEF1EB",
+        iconColor: "#53684D",
+      },
     },
     {
       id: "blog",
@@ -104,6 +113,10 @@ export const profile: ProfileConfig = {
       url: "https://renaldi.fun",
       enabled: true,
       order: 7,
+      appearance: {
+        iconBackground: "#F3F0E9",
+        iconColor: "#796747",
+      },
     },
     {
       id: "website",
@@ -113,6 +126,10 @@ export const profile: ProfileConfig = {
       url: "https://links.renaldi.fun",
       enabled: false,
       order: 8,
+      appearance: {
+        iconBackground: "#EEF1EB",
+        iconColor: "#66745F",
+      },
     },
     {
       id: "whatsapp",
@@ -122,6 +139,10 @@ export const profile: ProfileConfig = {
       url: "",
       enabled: false,
       order: 9,
+      appearance: {
+        iconBackground: "#EAF4ED",
+        iconColor: "#27834D",
+      },
     },
   ],
 };

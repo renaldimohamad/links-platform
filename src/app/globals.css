@@ -1,6 +1,6 @@
 :root {
   --radius: 12px;
-  --font-sans: var(--font-instrument-sans), sans-serif;
+  --font-sans: var(--font-family, var(--font-instrument-sans)), sans-serif;
 }
 * {
   box-sizing: border-box;
@@ -11,7 +11,7 @@ html {
 body {
   margin: 0;
   background: transparent;
-  font-family: var(--font-sans);
+  font-family: var(--font-family, var(--font-sans));
   -webkit-font-smoothing: antialiased;
 }
 a {
@@ -23,13 +23,17 @@ button {
 }
 .page-shell {
   min-height: 100svh;
-  background: var(--background);
+  background-color: var(--background);
+  background-image: var(--background-image, none);
+  background-position: var(--background-position, center);
+  background-size: var(--background-size, cover);
+  background-repeat: var(--background-repeat, no-repeat);
   color: var(--foreground);
   padding: 0 28px;
   overflow: hidden;
 }
 .page-frame {
-  max-width: 1000px;
+  max-width: var(--layout-width, 1000px);
   margin: 0 auto;
 }
 .topbar {
@@ -46,7 +50,7 @@ button {
   gap: 19px;
 }
 .availability {
-  color: var(--secondary-text);
+  color: var(--availability-text, var(--secondary-text));
   font-size: 12px;
   display: flex;
   align-items: center;
@@ -56,8 +60,8 @@ button {
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: #5d8063;
-  box-shadow: 0 0 0 3px rgb(93 128 99 / 12%);
+  background: var(--availability-dot, var(--accent));
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--availability-dot-glow, var(--accent)) 12%, transparent);
 }
 .top-cta {
   height: 42px;
@@ -66,14 +70,20 @@ button {
   display: grid;
   place-items: center;
   border: 1px solid var(--border);
-  background: var(--surface);
-  color: var(--accent);
+  background: var(--element-bg, var(--surface));
+  color: var(--element-text, var(--accent));
+  border-color: var(--element-border, var(--border));
+  border-radius: var(--element-radius, 50%);
+  box-shadow: var(--element-shadow, none);
+  padding: var(--element-padding, 0);
   cursor: pointer;
   transition: background 0.18s ease, color 0.18s ease;
 }
 .top-cta:hover {
-  background: var(--icon-surface);
-  color: var(--accent-hover);
+  background: var(--element-bg-hover, var(--icon-surface));
+  color: var(--element-text-hover, var(--accent-hover));
+  border-color: var(--element-border-hover, var(--element-border, var(--border)));
+  box-shadow: var(--element-shadow-hover, var(--element-shadow, none));
 }
 .share-feedback {
   position: absolute;
@@ -83,28 +93,28 @@ button {
   max-width: min(280px, 80vw);
   padding: 7px 10px;
   border: 1px solid var(--border);
-  border-radius: 8px;
+  border-radius: var(--radius);
   background: var(--surface);
   color: var(--secondary-text);
   font-size: 12px;
-  box-shadow: 0 3px 10px rgb(38 39 34 / 5%);
+  box-shadow: var(--shadow-card);
 }
 .share-feedback:empty {
   display: none;
 }
 .hero {
   text-align: center;
-  padding: 48px 0 0;
+  padding: calc(var(--spacing-unit, 8px) * 6) 0 0;
 }
 .portrait-wrap {
   width: 120px;
   height: 120px;
   position: relative;
-  margin: 0 auto 24px;
+  margin: 0 auto calc(var(--spacing-unit, 8px) * 3);
   border: 2px solid var(--surface);
   border-radius: 50%;
   background: var(--icon-surface);
-  box-shadow: 0 2px 8px rgb(38 39 34 / 7%);
+  box-shadow: var(--shadow-card);
 }
 .portrait {
   object-fit: cover;
@@ -130,6 +140,7 @@ button {
   margin: 0 0 12px;
 }
 .hero h1 {
+  font-family: var(--heading-font-family, var(--font-sans));
   font-size: clamp(32px, 4vw, 42px);
   font-weight: 600;
   line-height: 1.2;
@@ -170,13 +181,18 @@ button {
 .actions {
   display: flex;
   justify-content: center;
-  gap: 10px;
-  margin: 24px 0 57px;
+  gap: calc(var(--spacing-unit, 8px) * 1.25);
+  margin: calc(var(--spacing-unit, 8px) * 3) 0 calc(var(--spacing-unit, 8px) * 7.125);
 }
 .button {
   height: 45px;
   padding: 0 17px;
-  border-radius: var(--radius);
+  border-radius: var(--element-radius, var(--button-radius, var(--radius)));
+  padding: var(--element-padding, 0 17px);
+  background: var(--element-bg, var(--accent));
+  color: var(--element-text, var(--primary-button-text, var(--surface)));
+  border: 1px solid var(--element-border, transparent);
+  box-shadow: var(--element-shadow, var(--shadow-button));
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -186,22 +202,53 @@ button {
   transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease, box-shadow 0.18s ease;
 }
 .button-primary {
-  background: var(--accent);
-  color: var(--surface);
+  background: var(--element-bg, var(--accent));
+  color: var(--element-text, var(--primary-button-text, var(--surface)));
 }
 .button-primary:hover {
-  background: var(--accent-hover);
+  background: var(--element-bg-hover, var(--accent-hover));
+  color: var(--element-text-hover, var(--element-text, var(--primary-button-text, var(--surface))));
+  border-color: var(--element-border-hover, var(--element-border, transparent));
+  box-shadow: var(--element-shadow-hover, var(--shadow-button-hover));
 }
 .button-secondary {
-  background: var(--surface);
-  border: 1px solid var(--border);
+  background: var(--element-bg, var(--surface));
+  border: 1px solid var(--element-border, var(--border));
   color: var(--secondary-text);
 }
 .button-secondary:hover {
-  background: var(--icon-surface);
+  background: var(--element-bg-hover, var(--icon-surface));
+  color: var(--element-text-hover, var(--element-text, var(--secondary-text)));
+}
+.button svg,
+.top-cta svg {
+  color: var(--element-icon-color, currentColor);
+  background: var(--element-icon-bg, transparent);
+}
+.button:hover svg,
+.top-cta:hover svg {
+  color: var(--element-icon-color-hover, var(--element-icon-color, currentColor));
+  background: var(--element-icon-bg-hover, var(--element-icon-bg, transparent));
+}
+.button:active,
+.top-cta:active {
+  background: var(--element-bg-active, var(--element-bg-hover, var(--accent-hover)));
+  color: var(--element-text-active, var(--element-text-hover, var(--foreground)));
+  border-color: var(--element-border-active, var(--element-border-hover, var(--border)));
+}
+.button:disabled,
+.top-cta:disabled {
+  background: var(--element-bg-disabled, var(--surface));
+  color: var(--element-text-disabled, var(--tertiary-text));
+  border-color: var(--element-border-disabled, var(--border));
+  cursor: not-allowed;
+}
+.button:disabled svg,
+.top-cta:disabled svg {
+  color: var(--element-icon-color-disabled, var(--tertiary-text));
 }
 .links-section {
-  max-width: 480px;
+  max-width: var(--content-width, 500px);
   margin: 0 auto;
 }
 .section-heading {
@@ -232,7 +279,7 @@ button {
 }
 .link-list {
   display: grid;
-  gap: 9px;
+  gap: calc(var(--spacing-unit, 8px) * 1.125);
 }
 .social-link {
   position: relative;
@@ -240,48 +287,46 @@ button {
   display: flex;
   align-items: center;
   gap: 13px;
-  padding: 11px 15px;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  box-shadow: 0 1px 4px rgb(38 39 34 / 3%);
+  padding: var(--element-padding, 11px 15px);
+  background: var(--element-bg, var(--surface));
+  border: 1px solid var(--element-border, var(--border));
+  border-radius: var(--element-radius, var(--card-radius, var(--radius)));
+  box-shadow: var(--element-shadow, var(--shadow-card));
+  color: var(--element-text, var(--foreground));
   transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
 }
 .social-link:hover {
   transform: translateY(-1px);
-  border-color: #d4d6cc;
-  box-shadow: 0 3px 9px rgb(38 39 34 / 5%);
+  background: var(--element-bg-hover, var(--surface));
+  color: var(--element-text-hover, var(--foreground));
+  border-color: var(--element-border-hover, var(--border));
+  box-shadow: var(--element-shadow-hover, var(--shadow-card));
+}
+.social-link:active {
+  background: var(--element-bg-active, var(--element-bg-hover, var(--surface)));
+  color: var(--element-text-active, var(--element-text-hover, var(--foreground)));
+  border-color: var(--element-border-active, var(--element-border-hover, var(--border)));
+}
+.social-link[aria-disabled="true"] {
+  background: var(--element-bg-disabled, var(--surface));
+  color: var(--element-text-disabled, var(--tertiary-text));
+  border-color: var(--element-border-disabled, var(--border));
+  cursor: not-allowed;
 }
 .social-icon {
   width: 39px;
   height: 39px;
   flex: 0 0 auto;
-  border-radius: 10px;
+  border-radius: var(--icon-radius, 10px);
   display: grid;
   place-items: center;
-  background: var(--icon-surface);
-  color: #51564a;
+  background: var(--element-icon-bg, var(--icon-surface));
+  color: var(--element-icon-color, var(--foreground));
+  border-radius: var(--icon-radius, 10px);
 }
-.icon-instagram {
-  color: #8c5f72;
-  background: #f3ecef;
-}
-.icon-tiktok {
-  color: #3e403b;
-}
-.icon-threads {
-  color: #3e403b;
-}
-.icon-github {
-  color: #484a44;
-}
-.icon-linkedin {
-  color: #526d80;
-  background: #edf1f2;
-}
-.icon-whatsapp {
-  color: #557a60;
-  background: #edf2ed;
+.social-link:hover .social-icon {
+  background: var(--element-icon-bg-hover, var(--element-icon-bg, var(--icon-surface)));
+  color: var(--element-icon-color-hover, var(--element-icon-color, var(--foreground)));
 }
 .social-copy {
   display: grid;
@@ -291,7 +336,7 @@ button {
 .social-label {
   font-size: 14px;
   font-weight: 600;
-  color: var(--foreground);
+  color: var(--element-text, var(--foreground));
 }
 .social-description {
   font-size: 12px;
@@ -316,7 +361,7 @@ button {
   color: var(--accent-hover);
 }
 .footer {
-  max-width: 480px;
+  max-width: var(--content-width, 500px);
   margin: 35px auto 0;
   padding: 17px 0 23px;
   border-top: 1px solid var(--border);
@@ -327,9 +372,9 @@ button {
   font-size: 11px;
 }
 :focus-visible {
-  outline: 3px solid var(--focus);
+  outline: 3px solid var(--element-focus, var(--focus));
   outline-offset: 3px;
-  border-radius: 6px;
+  border-radius: var(--radius);
 }
 @media (max-width: 600px) {
   .page-shell {
@@ -373,7 +418,7 @@ button {
     font-size: 12px;
   }
   .links-section {
-    max-width: 420px;
+    max-width: min(420px, var(--content-width, 420px));
   }
   .section-heading h2 {
     font-size: 20px;
@@ -432,7 +477,7 @@ button {
     margin-bottom: 64px;
   }
   .links-section {
-    max-width: 500px;
+    max-width: var(--content-width, 500px);
   }
 }
 @media (prefers-reduced-motion: reduce) {
